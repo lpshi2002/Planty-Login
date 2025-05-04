@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.example.plantmanager.plantdetail.PlantDetailActivity">
+
+    <!-- 상단 툴바 -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@android:color/black"
+            app:navigationIcon="@drawable/ic_home_placeholder" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- 식물 이미지 -->
+    <ImageView
+        android:id="@+id/iv_plant_detail_image"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+    android:scaleType="centerCrop"
+    app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    tools:srcCompat="@tools:sample/backgrounds/scenic" /> <!-- 미리보기용 샘플 이미지 -->
+
+    <!-- 식물 이름 (예: 토토) -->
+    <TextView
+        android:id="@+id/tv_plant_detail_nickname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+    app:layout_constraintTop_toBottomOf="@id/iv_plant_detail_image"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/iv_favorite"
+    tools:text="토토 (Plant Nickname)" />
+
+    <!-- 식물 종류 (예: 방울토마토) -->
+    <TextView
+        android:id="@+id/tv_plant_detail_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_plant_detail_nickname"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="방울토마토 (Plant Type)" />
+
+    <!-- 좋아요/즐겨찾기 아이콘 android:src="@drawable/ic_favorite_border_placeholder"-->
+    <ImageView
+        android:id="@+id/iv_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_foreground"
+    android:padding="12dp"
+    android:layout_marginEnd="16dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@id/tv_plant_detail_nickname"
+    app:layout_constraintBottom_toBottomOf="@id/tv_plant_detail_nickname"
+    android:contentDescription="Favorite" />
+
+    <!-- 정보 섹션 타이틀 -->
+    <TextView
+        android:id="@+id/tv_info_section_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:text="정보"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_plant_detail_name" />
+
+    <!-- 토양 습도 정보 카드 android:background="@drawable/info_card_background_normal"-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_soil_moisture"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_launcher_foreground"
+    android:padding="12dp"
+    app:layout_constraintTop_toBottomOf="@id/tv_info_section_title"
+    app:layout_constraintStart_toStartOf="@id/tv_info_section_title"
+    app:layout_constraintEnd_toEndOf="parent">
+    <!--android:src="@drawable/ic_soil_placeholder"-->
+    <ImageView
+        android:id="@+id/iv_soil_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_launcher_foreground"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_soil_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="--%"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/iv_soil_icon"
+        app:layout_constraintTop_toTopOf="@id/iv_soil_icon"/>
+
+    <TextView
+        android:id="@+id/tv_soil_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="토양 습도"
+        android:textSize="12sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="@id/tv_soil_percentage"
+        app:layout_constraintTop_toBottomOf="@id/tv_soil_percentage"/>
+<!--android:src="@drawable/ic_arrow_forward_placeholder"-->
+    <ImageView
+        android:id="@+id/iv_soil_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_foreground"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 물탱크 정보 카드 android:background="@drawable/info_card_background_warning"-->
+<androidx.constraintlayout.widget.ConstraintLayout
+android:id="@+id/layout_water_tank"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_marginTop="8dp"
+android:background="@drawable/ic_launcher_foreground"
+    android:padding="12dp"
+    app:layout_constraintTop_toBottomOf="@id/layout_soil_moisture"
+    app:layout_constraintStart_toStartOf="@id/layout_soil_moisture"
+    app:layout_constraintEnd_toEndOf="@id/layout_soil_moisture">
+<!--android:src="@drawable/ic_water_placeholder"-->
+<ImageView
+android:id="@+id/iv_water_icon"
+android:layout_width="32dp"
+android:layout_height="32dp"
+android:src="@drawable/ic_launcher_foreground"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
+<TextView
+android:id="@+id/tv_water_percentage"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="12dp"
+android:text="--%"
+android:textSize="16sp"
+android:textStyle="bold"
+android:textColor="#FF0000"
+    app:layout_constraintStart_toEndOf="@id/iv_water_icon"
+    app:layout_constraintTop_toTopOf="@id/iv_water_icon"/>
+
+<TextView
+android:id="@+id/tv_water_label"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="물탱크"
+android:textSize="12sp"
+android:textColor="@android:color/darker_gray"
+app:layout_constraintStart_toStartOf="@id/tv_water_percentage"
+app:layout_constraintTop_toBottomOf="@id/tv_water_percentage"/>
+<!--android:src="@drawable/ic_arrow_forward_placeholder"-->
+<ImageView
+android:id="@+id/iv_water_arrow"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:src="@drawable/ic_launcher_foreground"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 색온도 라벨 -->
+<TextView
+android:id="@+id/tv_light_temp_label"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="24dp"
+android:text="색온도"
+android:textColor="@android:color/black"
+app:layout_constraintStart_toStartOf="@id/layout_water_tank"
+app:layout_constraintTop_toBottomOf="@id/layout_water_tank" />
+
+    <!-- 색온도 값 -->
+<TextView
+android:id="@+id/tv_light_temp_value"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="----K"
+android:textColor="@android:color/darker_gray"
+app:layout_constraintEnd_toEndOf="@id/layout_water_tank"
+app:layout_constraintTop_toTopOf="@id/tv_light_temp_label"
+app:layout_constraintBottom_toBottomOf="@id/tv_light_temp_label"/>
+
+    <!-- 색온도 SeekBar -->
+<SeekBar
+android:id="@+id/seekBar_light_temp"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_marginTop="8dp"
+android:progress="50"
+    android:max="100"
+    app:layout_constraintTop_toBottomOf="@id/tv_light_temp_label"
+    app:layout_constraintStart_toStartOf="@id/tv_light_temp_label"
+    app:layout_constraintEnd_toEndOf="@id/tv_light_temp_value" />
+
+    <!-- 밝기 라벨 -->
+<TextView
+android:id="@+id/tv_brightness_label"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="16dp"
+android:text="밝기"
+android:textColor="@android:color/black"
+app:layout_constraintStart_toStartOf="@id/seekBar_light_temp"
+app:layout_constraintTop_toBottomOf="@id/seekBar_light_temp" />
+
+    <!-- 밝기 값 -->
+<TextView
+android:id="@+id/tv_brightness_value"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="--%"
+android:textColor="@android:color/darker_gray"
+app:layout_constraintEnd_toEndOf="@id/seekBar_light_temp"
+app:layout_constraintTop_toTopOf="@id/tv_brightness_label"
+app:layout_constraintBottom_toBottomOf="@id/tv_brightness_label"/>
+
+    <!-- 밝기 SeekBar -->
+<SeekBar
+android:id="@+id/seekBar_brightness"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_marginTop="8dp"
+android:progress="50"
+    android:max="100"
+    app:layout_constraintTop_toBottomOf="@id/tv_brightness_label"
+    app:layout_constraintStart_toStartOf="@id/tv_brightness_label"
+    app:layout_constraintEnd_toEndOf="@id/tv_brightness_value" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
